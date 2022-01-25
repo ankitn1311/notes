@@ -40,7 +40,8 @@ tsc filename.ts
 
 - assignment
 
-  ```function add(n1: number, n2: number) {
+  ```
+  function add(n1: number, n2: number) {
     return n1 + n2;
   }
   ```
@@ -65,7 +66,8 @@ tsc filename.ts
 
 ## Function return type and void
 
-```function add(n1: number, n2: number) :number{           // (automatic type inference here for return type)
+```
+function add(n1: number, n2: number) :number{           // (automatic type inference here for return type)
   return n1 + n2;
 }
 ```
