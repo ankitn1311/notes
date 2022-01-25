@@ -157,3 +157,19 @@ then `tsc --watch`
 - object and array destructuring
 
 # Classes and Interfaces
+
+### Syntax
+
+```
+class Department {
+  name: string;
+  constructor(n: string) {
+    this.name = n
+  }
+  printDept(this: Department) {
+    console.log("Department", this.name)
+  }
+}
+
+const dept = new Department('accounting');
+```
