@@ -52,4 +52,23 @@ tsc filename.ts
 
 ## Literal Types
 
--
+- type : 'edit' | 'save'
+
+## Type Aliases
+
+- using _type_ keyword
+  `type Combinable = string | name`
+
+# Function return type and void
+
+`function add(n1: number, n2: number) :number(automatic inference){ return n1 + n2; }`
+
+- void type doesn't exist in javascript
+- void exists in typescript
+
+## Functions as types
+
+- If only function then there is a type named : Funtion
+  `const someFunction : Function;`
+- If we have to specify arguments and return type then:
+  `(n1: number, n2: number) => number`
