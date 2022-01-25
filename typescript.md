@@ -71,4 +71,12 @@ tsc filename.ts
 - If only function then there is a type named : Funtion
   `const someFunction : Function;`
 - If we have to specify arguments and return type then:
-  `(n1: number, n2: number) => number`
+  `( _anyName_ : number, _anyName_ : number) => number`
+
+# More Types
+
+- Unknown Type
+  `const a : unknown` - different from any because we can't assign it to another variable
+
+- Never Type
+  `const a : never` - return by function (when a function throws a error / infinte loop)
