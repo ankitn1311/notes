@@ -36,7 +36,7 @@ tsc filename.ts
 - enum enum Role { NEW, OLD} starting from 0
 - any
 
-## Type assignment and type inference
+### Type assignment and type inference
 
 - assignment
   `function add(n1: number, n2: number) { return n1 + n2; }`
@@ -46,34 +46,34 @@ tsc filename.ts
   `const number = 5`
   automatically assign type number
 
-## Union Type
+### Union Type
 
 - string | number
 
-## Literal Types
+### Literal Types
 
 - type : 'edit' | 'save'
 
-## Type Aliases
+### Type Aliases
 
 - using _type_ keyword
   `type Combinable = string | name`
 
-# Function return type and void
+## Function return type and void
 
 `function add(n1: number, n2: number) :number(automatic inference){ return n1 + n2; }`
 
 - void type doesn't exist in javascript
 - void exists in typescript
 
-## Functions as types
+### Functions as types
 
 - If only function then there is a type named : Funtion
   `const someFunction : Function;`
 - If we have to specify arguments and return type then:
   `( _anyName_ : number, _anyName_ : number) => number`
 
-# More Types
+## More Types
 
 - Unknown Type
   `const a : unknown` - different from any because we can't assign it to another variable
