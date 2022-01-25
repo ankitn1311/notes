@@ -39,7 +39,11 @@ tsc filename.ts
 ### Type assignment and type inference
 
 - assignment
-  `function add(n1: number, n2: number) { return n1 + n2; }`
+
+  ```function add(n1: number, n2: number) {
+    return n1 + n2;
+  }
+  ```
 
 - inference
   you don't need to specify type when you are assigning to a const variable because it will infer the type of value
@@ -61,7 +65,10 @@ tsc filename.ts
 
 ## Function return type and void
 
-`function add(n1: number, n2: number) :number(automatic inference){ return n1 + n2; }`
+```function add(n1: number, n2: number) :number{           // (automatic type inference here for return type)
+  return n1 + n2;
+}
+```
 
 - void type doesn't exist in javascript
 - void exists in typescript
@@ -80,3 +87,60 @@ tsc filename.ts
 
 - Never Type
   `const a : never` - return by function (when a function throws a error / infinte loop)
+
+---
+
+# Typescript Compiler
+
+To watch for file change in a file
+
+`tsc filename.ts --watch or -w`
+
+To watch whole project
+
+`tsc --init`
+
+> creates tsconfig.json file
+
+then `tsc --watch`
+
+## tsconfig.json
+
+### Exculde files
+
+```
+  {
+    "exclude": [
+      "filename.ts",         // "**/*.dev.ts" to exculde any file ending with .dev.ts
+      "node_modules"
+    ]
+  }
+```
+
+### Include files
+
+> This will then not include any other file.
+
+```
+  {
+    "include": [
+      "filename.ts",         // "**/*.dev.ts" to exculde any file ending with .dev.ts
+    ]
+  }
+```
+
+## Compiler Options
+
+- target
+  - what version of js file the compiler will compile to - es3, es5, es6 ....
+- lib
+  - ["dom", "dom.iterable", "es6", "scripthost"] // default value
+- allowJs
+- checkJs
+- declartion > .d.ts files
+- _sourceMap_
+  > very important file, this will create filename.ts.map files that will help us in source map in browsers devtools
+  > we can see typescript files as well in source tab
+- outDir -> compiled javascript file location (mostly in dist folder)
+- removeComments
+- noEmitOnError: true
