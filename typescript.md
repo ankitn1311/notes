@@ -146,3 +146,14 @@ then `tsc --watch`
 - outDir -> compiled javascript file location (mostly in dist folder)
 - removeComments
 - noEmitOnError: true
+
+# Typescript & Modern Javascript
+
+- const, let
+- arrow functions
+- default functions parameters
+- spread operator
+- rest parameters
+- object and array destructuring
+
+# Classes and Interfaces
