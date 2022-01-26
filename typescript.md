@@ -173,3 +173,93 @@ class Department {
 
 const dept = new Department('accounting');
 ```
+
+### Public Private
+
+> introduced in typescript
+
+```
+public name;
+private employee: [];
+```
+
+### Shorthand property
+
+`constructor(private id: string, public name: string) {}`
+
+### readonly modifier
+
+> introduced in typescript
+
+`constructor(private readonly id: string) {}`
+
+## Inheritance
+
+```
+class ITDepartment extends Department {
+
+}
+```
+
+> This will inherit everything what department has including constructor
+
+If want to create your own constructor then:
+
+```
+constructor(id: string) {
+  super(id, 'IT');  // Mandatory
+}
+```
+
+### Override
+
+```
+printDept(this: Department) {
+  // somecode
+  this.id // can't access if this is private in parent class
+}
+```
+
+### Protected
+
+Private not accessable on child classes
+We have to use protected in this case
+
+### Getters and Setters
+
+```
+property: string;
+
+set setProperty (val: string) {
+  this.property = val;
+}
+
+get getProperty() {
+  return this.property;
+}
+```
+
+Now we can use like this:
+
+```
+obj.setProperty = 'Some value';
+console.log(obj.getProperty);
+```
+
+### Static properties and methods
+
+global variables
+
+`static fiscalYear = 2022`
+
+```
+static getEmployeeObject (name: string) {
+  return {name: name}
+}
+```
+
+To access static variables in methods we have to use _ClassName.method/propertyName_ like syntax.
+
+## Abstract Classes
+
+This is when you want to enforce child class to override certain methods
