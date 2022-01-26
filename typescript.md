@@ -263,3 +263,8 @@ To access static variables in methods we have to use _ClassName.method/propertyN
 ## Abstract Classes
 
 This is when you want to enforce child class to override certain methods
+
+Mark the method you want the child to override with abstract keyword and remove body of the method.
+`abstract methodName(param: string): void;`
+
+and also add abstract keyword with class
