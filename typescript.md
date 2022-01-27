@@ -268,3 +268,81 @@ Mark the method you want the child to override with abstract keyword and remove 
 `abstract methodName(param: string): void;`
 
 and also add abstract keyword with class
+
+> We cannot make objects of abstract class
+
+## _Singletons and Private constructors_
+
+**Singleton Pattern** - This means you only have one instance of that class
+
+To do this we have to make constructor of that class private
+
+`private constructor() {}`
+
+By doing this we won't be able to call **new ClassName()** on this
+and then we have to add a static method which returns the instance
+of that class only if the instance is not created before
+
+```
+static private instance: ClassName;
+
+static getInstance() {
+  if(ClassName.instance) {
+    return this.instance;
+  }
+  this.instance = new ClassName();
+  return this.instance;
+}
+```
+
+# Interfaces
+
+Only in typescript
+
+```
+interface Person {
+  name : string;
+  age: number;
+  greet(name: string, age: number): void
+};
+
+let user : Person;
+user = {
+  name: "ankit",
+  age: 30,
+  greet(name: string) : {
+    console.log("hello from ", name);
+  }
+}
+```
+
+**Difference between interfaces and type**
+Interfaces are only can be used to describe the structure of an object
+But in type you can also store other things such as union type
+
+Interfaces can be used with classes
+
+```
+interface Greetable {
+  name: string;
+  greet(phrase: string): void;
+}
+
+class Person implements Greetable, AnotherInterface {
+
+}
+```
+
+### Readonly with interface
+
+Can't be used with type and only interface
+
+interface One extends Two, Three // Two, Three are interfaces
+
+## Use ? or ! to make any memeber of interface optional
+
+`name?: string;`
+
+---
+
+# Advance Types
