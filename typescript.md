@@ -346,3 +346,109 @@ interface One extends Two, Three // Two, Three are interfaces
 ---
 
 # Advance Types
+
+## Intersection Types (&)
+
+```
+type Admin = {
+  name: string;
+  privileges: string[];
+};
+
+type Employee = {
+  name: string;
+  startDate: Date;
+}
+
+type ElevatedEmployee = Admin & Employee;
+```
+
+> This concept is same as Interface inheritance
+
+```
+type Combinable= string | number;
+
+type Numeric = number | boolean;
+
+type Universal = Combinable & Number;
+```
+
+Universal here will be number
+
+## Type Guards
+
+Example: Checking with typeof operator
+
+```
+const n1 : number | string;
+
+if(typeof n1 === 'string') {
+  // Then do something with string
+} else {
+  // Do something with number
+}
+```
+
+> This works for basic types like number string but doesn't work for Custom Types
+
+`type UnknownEmployee = Employee | Admin`
+
+Here we can't check with the typeof operator
+
+There is a **_in_** keyword
+
+`if('propertyName' in variable)`
+
+If types are class based then we can use **instanceof** operator
+
+### Discrimiated Union
+
+```
+
+interface Bird {
+  type: 'bird';       // literal type
+  flyingSpeed: number;
+}
+interface Horse {
+  type: 'horse';     // literal type
+  runningSpeed: number;
+}
+
+type Animal= Bird | Horse:
+
+function moveAnimal(animal: Animal) {
+  switch(animal.type) {
+    case 'bird':        // autocomplete available because of typescript
+      // do something
+      break;
+    case 'horse';
+      // do something again
+      break;
+    default:
+      // do something
+  }
+}
+```
+
+## Type Casting
+
+If we get html element in ts
+
+`document.querySelector('p')`
+
+> In this typescript will automatically infer this as HTMLParagraphElement
+
+`document.getElementById('class-name')` // This will return HTMLElment or null
+
+To solve null we can add exclamation mark at the end.
+
+> Here typescript will only infer it as HTMLElement
+
+_To type cast to specific element like input we have to cast_
+There are two methods to do this:
+
+- `<HTMLInputElement>document.getElementById('input')!` // ! to prevent null
+
+- `document.getElementById('input')! as HTMLInputElement`
+
+- `(userInput as HTMLInputElement).value = 'Hi There'`
