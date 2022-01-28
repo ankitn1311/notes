@@ -522,3 +522,86 @@ This will give back 'Checked' even if _somedata_ is empty string '' or 0
 To avoid this we use:
 
 `const check = someData ?? 'Checked'`
+
+# Generics
+
+Available in typescript but not in javascript
+
+Inbuilt Generics Types Example:
+
+Array, Promise
+
+```
+const a: Array<string> = [];
+a.split('');
+
+
+const promise: Promise<string> = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("some message")
+  }, 2000);
+})
+
+promise.then((data) => {
+  data.split('');
+})
+```
+
+## Create a Generic
+
+```
+function merge<T, U>(a: T, b: U) {
+  return Object.assign(a, b);
+}
+```
+
+**Working with constraint**
+
+```
+function merge<T extends object, U extends object> (a: T, b: U) {
+  return Object.assign(a,b);
+}
+```
+
+## keyof constraint
+
+```
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
+}
+```
+
+# Generic Classes
+
+```
+class Data <T extends number | string | boolean> {
+  ...
+}
+```
+
+# Some utilities
+
+## Partials
+
+```
+interface CourseGoal {
+  name: string;
+  desc: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(name: string, desc: string, year: Date): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {}
+  courseGoal.name = name;
+  courseGoal.desc = desc;
+  courseGoal.completeUntil =  year;
+  return courseGoal as CourseGoal;
+}
+```
+
+## Readonly
+
+```
+const names : Readonly<string[]> = ['ankit', 'rahul'];
+names.push('akash'); // should be error
+```
