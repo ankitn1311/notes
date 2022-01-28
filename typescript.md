@@ -452,3 +452,73 @@ There are two methods to do this:
 - `document.getElementById('input')! as HTMLInputElement`
 
 - `(userInput as HTMLInputElement).value = 'Hi There'`
+
+## Index Properties
+
+```
+interface ErrorContainer {
+  id: string;     // This is allowed
+  id: number;     // This is not allowed only string type is allowed if the index property type is also string;
+  [error: string] : string;
+}
+
+const errors: ErrorContainer = {
+  email: 'Not a valid email',
+  name: 'Length must be greater than 3',
+}
+```
+
+## Function Overloads
+
+Function with same name but with different parameters
+
+Before the main function
+
+```
+
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: number, b: string): string;
+function add(a: string, b: number): string;
+function add (a: Combinable, b : Combinable) {
+  if(typeof a === 'string' || typeof b === 'string') {
+    return a.toString()+ b.toString();
+  }
+  return a + b;
+}
+```
+
+## Optional Chaining
+
+```
+const fetchedUser = {
+  id: '123',
+  name: 'Max',
+  job: {
+    title: 'CEO',
+    desc: 'my own company'
+  }
+}
+
+console.log(fetchedUser.job.title);
+```
+
+If there is no job property in the fetched user then there will be run time error
+
+`console.log(fetchedUser?.job?.title)`
+
+If we use _'?'_ job will not be fetched if fetchedUser is undefined
+
+## Null coalescing
+
+```
+const someData = null;
+
+const check = someData || 'Checked';
+```
+
+This will give back 'Checked' even if _somedata_ is empty string '' or 0
+
+To avoid this we use:
+
+`const check = someData ?? 'Checked'`
