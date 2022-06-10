@@ -1,5 +1,8 @@
 # Notes for typescript
 
+## IMPORTANT LINKS
+- https://www.youtube.com/watch?v=hBk4nV7q6-w
+
 What is typescript
 
 Typescript is superset for javascript.
