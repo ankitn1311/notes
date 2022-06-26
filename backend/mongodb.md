@@ -20,7 +20,8 @@ delete(), deleteOne(), deleteMany()
 ## Merging related documents
 
 * Lookup
-  ``customers.aggregate([
+  ```
+  customers.aggregate([
     {
       $lookup: {
         from: 'books'.
@@ -29,5 +30,6 @@ delete(), deleteOne(), deleteMany()
         as: 'favBookData',
       }
     }
-   ])``
+   ])
+  ```
  
