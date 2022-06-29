@@ -32,4 +32,12 @@ delete(), deleteOne(), deleteMany()
     }
    ])
   ```
+ ## Create (Document Creation Methods)
  
+ * insertOne({})
+ * insertMany([{}, {}])
+ * insert()
+ * mongoimport -d cars -c carsList --drop --jsonArray
+
+- insertMany() is ordered insert i.e., if there is any error in between then the documents before the error will be inserted.
+- 
