@@ -55,3 +55,53 @@ default: {w: 1, j: false} // j - journal
 Either completely succeed or completely fail
 
 Import -> mongoimport tv-shows.json -d movieData -c movies --jsonArray --drop
+
+## Find
+
+###Query selection and Projection Operators
+
+* Query selectors - Comparison, Evaluation, Logical, Array, Element, Comments, Geospatial
+* Projection - $, $elemMatch, $meta, $slice
+
+### Comparison
+* $eq, $lt, $gt, $gte, $lte, $in, $nin, $ne
+* $not, $and, $or
+
+### Element
+* $exists, $type
+
+### Evaluation
+* $jsonSchema, $mod, $where(depricated and replaced with $expr), $regex, $text
+Example -> 
+```
+db.collection.find({
+  $expr : {
+    $gt: [
+      { $cond: 
+        { if: 
+          {$gte : ["$valueOne", 50]},
+          then:
+          {$subtract: ["$valueOne", 10]},
+          else:
+          "$valueOne"
+        }
+      },
+      "$valueTwo"
+    ]
+  }
+})
+```
+
+### Array
+
+* $size, $elemMatch, $all
+
+```
+db.collection.find({
+  hobbies: {
+    $elemMatch: {title: "Sports", frequency: {$gt: 3}}
+  }
+})
+```
+
+
