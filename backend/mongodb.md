@@ -104,4 +104,12 @@ db.collection.find({
 })
 ```
 
+## Cursors
+
+find() method yields as cursor
+
+## Projection
+
+db.collection.find({genres: "Drama"}, {"genres.$" : 1})
+
 
