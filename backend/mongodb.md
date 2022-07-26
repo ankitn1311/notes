@@ -195,5 +195,16 @@ nameLength: { $strLenCP : "$name.first" }
 age: { $subtract: [5, 1]}
 birthdate: { $toDate: "$birthdate" }
 data: { $convert: { input: "$data", to: "double", onError: 0.0, onNull: 0.0}}
+scores: { $slice: ["$arrayname", 1]}
+scores: { $size: "$arrayname" }
+scores: {
+  $filter: {
+    input: "$arrayname",
+    as: "sc",
+    cond: {
+      $gt: ["$$sc.score", 30]
+    }
+  }
+}
 
 ```
