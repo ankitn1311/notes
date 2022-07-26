@@ -60,25 +60,29 @@ Import -> mongoimport tv-shows.json -d movieData -c movies --jsonArray --drop
 
 ###Query selection and Projection Operators
 
-* Query selectors - Comparison, Evaluation, Logical, Array, Element, Comments, Geospatial
-* Projection - $, $elemMatch, $meta, $slice
+- Query selectors - Comparison, Evaluation, Logical, Array, Element, Comments, Geospatial
+- Projection - $, $elemMatch, $meta, $slice
 
 ### Comparison
-* $eq, $lt, $gt, $gte, $lte, $in, $nin, $ne
-* $not, $and, $or
+
+- $eq, $lt, $gt, $gte, $lte, $in, $nin, $ne
+- $not, $and, $or
 
 ### Element
-* $exists, $type
+
+- $exists, $type
 
 ### Evaluation
-* $jsonSchema, $mod, $where(depricated and replaced with $expr), $regex, $text
-Example -> 
+
+- $jsonSchema, $mod, $where(depricated and replaced with $expr), $regex, $text
+  Example ->
+
 ```
 db.collection.find({
   $expr : {
     $gt: [
-      { $cond: 
-        { if: 
+      { $cond:
+        { if:
           {$gte : ["$valueOne", 50]},
           then:
           {$subtract: ["$valueOne", 10]},
@@ -94,7 +98,7 @@ db.collection.find({
 
 ### Array
 
-* $size, $elemMatch, $all
+- $size, $elemMatch, $all
 
 ```
 db.collection.find({
@@ -112,4 +116,84 @@ find() method yields as cursor
 
 db.collection.find({genres: "Drama"}, {"genres.$" : 1})
 
+# Aggregation Framework
 
+### $match
+
+```
+db.collection.aggregate([
+  { $match: { gender: "female" } }
+])
+```
+
+### $group
+
+```
+db.collection.aggregate([
+  { $match: { gender: "female" } }
+  { $group: { _id: {state: "$location.state"}, totalPersons: { $sum: 1 }}}
+])
+
+db.collection.aggregate([
+  { $group: { _id: { birthYear: { $isoWeekYear: "$birthdate" }, num: { $sum: 1}}}
+])
+
+db.collection.aggregate([
+  { $group: { _id: { age: "$age" }, allHobbies: {$push: "$hobbies"}}}
+])
+```
+
+### $sort
+
+```
+db.collection.aggregate([
+  { $match: { gender: "female" } }
+  { $group: { _id: {state: "$location.state"}, totalPersons: { $sum: 1 }}}
+  { $sort : { totalPersons : -1 }}
+])
+```
+
+### $project
+
+```
+db.collection.aggregate([
+  { $project: { _id: 0, gender: 1, __FILTERS__ } }
+])
+
+db.collection.aggregate([
+  { $project:
+    { _id: 0, gender: 1,
+      location: {
+        type: "Point",
+        coordinates: [
+          "$location.coordinates.longitude",
+          "$location.coordinates.latitude"
+        ]
+      }
+    }
+  }
+])
+```
+
+### $unwind
+
+```
+db.collection.aggregate([
+  { $unwind: "$hobbies" }
+  { $group: { _id: { age: "$age" }, allHobbies: {$push: "$hobbies"}}}
+  // $push | $addToSet
+])
+```
+
+## Filters
+
+```
+fullName: { $concat: ["$name.first", " ", "$name.last"] }
+fullName: { $toUpper: "$name.first" }
+fullName: { $substrCP: ["$name.first", 0, 1]}
+nameLength: { $strLenCP : "$name.first" }
+age: { $subtract: [5, 1]}
+birthdate: { $toDate: "$birthdate" }
+data: { $convert: { input: "$data", to: "double", onError: 0.0, onNull: 0.0}}
+
+```
