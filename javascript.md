@@ -4,3 +4,5 @@
 4. debouncing
 5. async vs defer
 6. event bubbling, capturing (trickling)
+7. event delegation (because of event bubbling)
+8. prototype
