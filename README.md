@@ -1,8 +1,9 @@
 # notes
+
 Notes for all subjects
 
-* Typescript
-* Nest
-* Mongodb
-* Flutter
-* React
+- Typescript
+- Nest
+- Mongodb
+- React Native
+- React
