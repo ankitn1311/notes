@@ -2,8 +2,10 @@
 
 Notes for all subjects
 
-- Typescript
-- Nest
-- Mongodb
-- React Native
-- React
+- Javascript
+
+* Typescript
+* Nest
+* Mongodb
+* React Native
+* React
